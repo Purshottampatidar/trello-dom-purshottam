@@ -20,6 +20,9 @@ function handleCreateNewList(){
         createNewList(listName,"");
         createListInOrignalTrello(listName)
     }
+    setTimeout(()=>{
+        location.reload();   
+    },2000)
     listName="";
     list_btn_pop.style.display = "none";
     add_list_btn.style.display = "block";
@@ -109,9 +112,9 @@ function createNewList(listName,listId){
     container.appendChild(addCardDiv);
 
 
-    const listContainer = document.querySelector('.list_container');
-    const createListContainer = document.querySelector('.create_list_new_container');
-
+    const listContainer = document.querySelector('.list_container');   ///main container
+    const createListContainer = document.querySelector('.create_list_new_container');   //add another list container
+    
     container.dataset.listId=listId;
     listContainer.insertBefore(container, createListContainer);
     // console.log(container);
@@ -317,6 +320,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 createCard(cardName,listId,"");
                 addCardToTrello(cardName,listId);
             }
+            setTimeout(()=>{
+              location.reload();   
+            },2000)
             cardInput.value='';
         }
     });
@@ -388,6 +394,7 @@ function addCardToTrello(cardName,listId){
 
 //----------fetching all the list from the original trello----------------//
 document.addEventListener('DOMContentLoaded', function() {
+    
     function fetchAllCards() {
         const url = `https://api.trello.com/1/boards/${boardId}/cards?key=${apiKey}&token=${token}`;
         
@@ -431,10 +438,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('delete_card')) {
             const cardElement = event.target.closest('.cardsContainer');
-            const cardId = cardElement.dataset.cardId;
-            // console.log(cardId);
-            deleteCard(cardId);
-
+            const cardId = cardElement.dataset.cardId;           
+        //  console.log(cardId);
+            deleteCard(cardId);     
 
         }
     });

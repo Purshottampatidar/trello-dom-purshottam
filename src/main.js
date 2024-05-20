@@ -22,6 +22,7 @@ create_board_btn.addEventListener('click',function(e){
     if (name.value !== "" && board_count < 10) { // Check if name is not empty and board_count is less than 10
         createBoard(name.value);
         createBoardByName(name.value);
+        location.reload();
         board_count++;
         if (board_count >= 10) {
             create_board_btn.disabled = true; // Disable the button if board_count reaches 10
